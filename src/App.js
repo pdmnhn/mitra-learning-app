@@ -1,54 +1,63 @@
-import { useState } from "react";
-import Typography from "@mui/material/Typography";
-import Toolbar from "@mui/material/Toolbar";
-import Box from "@mui/material/Box";
-import AppBar from "@mui/material/AppBar";
-import Paper from "@mui/material/Paper";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import HomeIcon from "@mui/icons-material/Home";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import CalendarIcon from "@mui/icons-material/Today";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountIcon from "@mui/icons-material/AccountCircle";
+import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
-function App() {
-  const [value, setValue] = useState(0);
+import Box from "@mui/material/Box";
+
+import Home from "./Home";
+import Courses from "./Courses";
+import Account from "./Account";
+
+import BottomNavigation from "./BottomNavigation";
+import bottomTabs from "./data/tabs";
+
+const IN_PROGRESS = "in_progress";
+
+const App = () => {
+  const [selectedTab, setSelectedTab] = useState(IN_PROGRESS);
+  const [changeInBottomTab, setChangeInBottomTab] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedTab !== IN_PROGRESS) {
+      document.title = bottomTabs.numberToName[selectedTab];
+      navigate(`/${bottomTabs.numberToName[selectedTab].toLowerCase()}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [changeInBottomTab]);
+
   return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            MIT Robotics Association
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-        elevation={3}
-      >
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        >
-          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction
-            label="Assignment"
-            icon={<AssignmentIcon />}
+    <Box
+      style={{
+        display: "flex",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
+      <Box sx={{ flexGrow: 1 }} component="div">
+        <Routes>
+          <Route path="/" element={<Home setSelectedTab={setSelectedTab} />} />
+          <Route
+            path="/:page"
+            element={<Home setSelectedTab={setSelectedTab} />}
           />
-          <BottomNavigationAction label="Calendar" icon={<CalendarIcon />} />
-          <BottomNavigationAction
-            label="Notifications"
-            icon={<NotificationsIcon />}
+          <Route
+            path="/courses/:id"
+            element={<Courses setSelectedTab={setSelectedTab} />}
           />
-          <BottomNavigationAction label="Account" icon={<AccountIcon />} />
-        </BottomNavigation>
-      </Paper>
+          <Route
+            path="/account/:page"
+            element={<Account setSelectedTab={setSelectedTab} />}
+          />
+        </Routes>
+      </Box>
+      <BottomNavigation
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
+        changeInBottomTab={changeInBottomTab}
+        setChangeInBottomTab={setChangeInBottomTab}
+      />
     </Box>
   );
-}
+};
 
 export default App;
