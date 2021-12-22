@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Course from "./Course";
-import Data from "./dummyData/courses";
+import Course from "./Course/Course";
+import Data from "../../dummyData/courses";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";

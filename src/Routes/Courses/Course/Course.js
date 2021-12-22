@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Data from "./dummyData/courses";
-import NotExist from "./NotExist";
+import Data from "../../../dummyData/courses";
+import NotExist from "../../NotExist/NotExist";
 
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";

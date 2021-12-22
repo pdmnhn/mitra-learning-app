@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 
 import Welcome from "./Welcome";
-import Courses from "./Courses";
-import Assignments from "./Assignments";
-import Notifications from "./Notifications";
-import Account from "./Account";
-import NotExist from "./NotExist";
-import bottomTabs from "./data/tabs";
+import Courses from "../Courses/Courses";
+import Assignments from "../Assignments/Assignments";
+import Notifications from "../Notifications/Notifications";
+import Account from "../Account/Account";
+import NotExist from "../NotExist/NotExist";
+import bottomTabs from "../../common/tabs";
 const components = [Welcome, Courses, Assignments, Notifications, Account];
 
 const Home = ({ setSelectedTab }) => {

@@ -3,12 +3,12 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 
-import Home from "./Home";
-import Courses from "./Courses";
-import Account from "./Account";
+import Home from "./Routes/Home/Home";
+import Courses from "./Routes/Courses/Courses";
+import Account from "./Routes/Account/Account";
 
-import BottomNavigation from "./BottomNavigation";
-import bottomTabs from "./data/tabs";
+import BottomNavigation from "./common/BottomNavigation";
+import bottomTabs from "./common/tabs";
 
 const IN_PROGRESS = "in_progress";
 

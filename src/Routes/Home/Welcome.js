@@ -4,8 +4,9 @@ import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { useNavigate } from "react-router-dom";
-import BackgroundImage from "./assets/background_image.png";
-import Logo from "./assets/logo.png";
+import BackgroundImage from "../../assets/background_image.png";
+import Logo from "../../assets/logo.png";
+
 const Welcome = () => {
   const navigate = useNavigate();
   return (
@@ -13,8 +14,8 @@ const Welcome = () => {
       sx={{
         align: "center",
         backgroundImage: `linear-gradient(rgba(127,0,0,0.75),rgba(0,0,127,0.75)), url(${BackgroundImage})`,
+        backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "repeat",
         width: "100%",
         height: "100%",
         display: "flex",
