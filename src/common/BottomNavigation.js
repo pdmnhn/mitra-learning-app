@@ -15,7 +15,7 @@ const BottomNavigation = ({
 }) => {
   return (
     <Paper
-      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      sx={{ zIndex: 1100, position: "fixed", bottom: 0, left: 0, right: 0 }}
       elevation={3}
     >
       <BottomNav
