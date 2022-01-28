@@ -37,8 +37,8 @@ const Share = () => {
         size="medium"
         aria-label="share"
         onClick={share}
-        // bottom nav height is 56 so above 15 units the share fab will in the ui
-        sx={{ position: "fixed", bottom: 71, right: 15, zIndex: 10000 }}
+        // bottom nav height is 56 so above 25 units the share fab will in the ui
+        sx={{ position: "fixed", bottom: 81, right: 25, zIndex: 10000 }}
       >
         <ShareIcon />
       </Fab>
