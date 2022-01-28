@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import BackgroundImage from "../../assets/background_image.png";
-import Logo from "../../assets/logo.png";
+import BackgroundImage from "../assets/background_image.png";
+import Logo from "../assets/logo.png";
 
 const Home = () => {
   return (

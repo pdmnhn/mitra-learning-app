@@ -2,15 +2,15 @@ import { Routes, Route } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 
-import Home from "./Routes/Home/Home";
-import Courses from "./Routes/Courses/Courses";
-import Course from "./Routes/Courses/Course/Course";
-import Assignments from "./Routes/Assignments/Assignments";
-import Notifications from "./Routes/Notifications/Notifications";
-import Account from "./Routes/Account/Account";
-import Signin from "./Routes/Account/Signin/Signin";
-import Signup from "./Routes/Account/Signup/Signup";
-import NotExist from "./Routes/NotExist/NotExist";
+import Home from "./Routes/Home";
+import Courses from "./Routes/Courses";
+import Course from "./Routes/Courses/Course";
+import Assignments from "./Routes/Assignments";
+import Notifications from "./Routes/Notifications";
+import Account from "./Routes/Account";
+import Signin from "./Routes/Account/Signin";
+import Signup from "./Routes/Account/Signup";
+import NotExist from "./Routes/NotExist";
 
 import BottomNavigation from "./common/BottomNavigation";
 import ShareButton from "./common/ShareButton";

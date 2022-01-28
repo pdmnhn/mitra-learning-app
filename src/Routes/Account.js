@@ -1,4 +1,4 @@
-import Signup from "./Signup/Signup";
+import Signup from "./Account/Signup";
 
 const Account = () => {
   return <Signup />;
