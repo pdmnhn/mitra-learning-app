@@ -22,10 +22,7 @@ const BottomNavigation = () => {
     }
   }, [location]);
   return (
-    <Paper
-      sx={{ zIndex: 1000, position: "fixed", bottom: 0, left: 0, right: 0 }}
-      elevation={3}
-    >
+    <Paper sx={{ zIndex: 1000 }} elevation={3}>
       <BottomNav
         showLabels
         value={selectedTab}

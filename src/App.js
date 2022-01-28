@@ -20,14 +20,12 @@ const App = () => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
         height: "100vh",
         width: "100%",
       }}
     >
-      <Box
-        sx={{ marginBottom: "56px", flexGrow: 1, overflowY: "auto" }}
-        component="div"
-      >
+      <Box sx={{ flexGrow: 1, overflowY: "auto" }} component="div">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/home" element={<Home />} />
