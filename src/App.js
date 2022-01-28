@@ -25,7 +25,11 @@ const App = () => {
         width: "100%",
       }}
     >
-      <Box sx={{ flexGrow: 1, overflowY: "auto" }} component="div">
+      <Box
+        sx={{ flexGrow: 1, overflowY: "auto", paddingBottom: "56px" }}
+        // padding bottom 56 px to unhide the contents hidden by the bottom nav bar whose height is 56 px
+        component="div"
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

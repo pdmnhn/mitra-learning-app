@@ -55,7 +55,6 @@ const SignUp = () => {
             label="Name"
             name="name"
             autoComplete="name"
-            autoFocus
           />
           <TextField
             margin="normal"
@@ -65,7 +64,6 @@ const SignUp = () => {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
           />
           <TextField
             margin="normal"
