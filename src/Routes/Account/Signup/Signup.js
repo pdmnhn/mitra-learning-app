@@ -2,12 +2,16 @@ import GoogleLoginButton from "react-google-button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const boxChildStyle = { m: 2 };
 
-const Signup = () => {
-  const navigate = useNavigate();
+const Signup = ({ setSelectedTab }) => {
+  useEffect(() => {
+    setSelectedTab("Account");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Box
       sx={{
@@ -22,9 +26,8 @@ const Signup = () => {
       <GoogleLoginButton />
       <Button
         sx={boxChildStyle}
-        onClick={() => {
-          navigate("/account/signin");
-        }}
+        component={Link}
+        to="/account/signin"
         color="secondary"
         variant="contained"
       >

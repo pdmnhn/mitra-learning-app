@@ -3,12 +3,16 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 const boxChildStyle = { m: 2 };
 
-const Signin = () => {
-  const navigate = useNavigate();
+const Signin = ({ setSelectedTab }) => {
+  useEffect(() => {
+    setSelectedTab("Account");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Box
       sx={{
@@ -23,9 +27,8 @@ const Signin = () => {
       <GoogleLoginButton style={{ margin: 2 }} />
       <Button
         sx={boxChildStyle}
-        onClick={(event) => {
-          navigate("/account/signup");
-        }}
+        component={RouterLink}
+        to="/account/signup"
         color="secondary"
         variant="contained"
       >

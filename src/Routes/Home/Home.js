@@ -1,30 +1,69 @@
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import BackgroundImage from "../../assets/background_image.png";
+import Logo from "../../assets/logo.png";
 
-import Welcome from "./Welcome";
-import Courses from "../Courses/Courses";
-import Assignments from "../Assignments/Assignments";
-import Notifications from "../Notifications/Notifications";
-import Account from "../Account/Account";
-import NotExist from "../NotExist/NotExist";
-import bottomTabs from "../../common/tabs";
-const components = [Welcome, Courses, Assignments, Notifications, Account];
+const Welcome = ({ setSelectedTab }) => {
+  useEffect(() => {
+    setSelectedTab("Home");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-const Home = ({ setSelectedTab }) => {
-  let { page } = useParams();
-  if (page === undefined) {
-    page = "home";
-  }
-  let ComponenetToRender;
-  if (page in bottomTabs.nameToNumber) {
-    const tab = bottomTabs.nameToNumber[page];
-    document.title = bottomTabs.numberToName[tab];
-    setSelectedTab(tab);
-    ComponenetToRender = components[tab];
-  } else {
-    ComponenetToRender = NotExist;
-    document.title = "404";
-  }
-  return <ComponenetToRender setSelectedTab={setSelectedTab} />;
+  return (
+    <Box
+      sx={{
+        align: "center",
+        backgroundImage: `linear-gradient(rgba(127,0,0,0.75),rgba(0,0,127,0.75)), url(${BackgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <AppBar position="fixed">
+        <Toolbar sx={{ backgroundColor: "#F7F7F7" }}>
+          <Box
+            component="img"
+            sx={{
+              height: 64,
+              mx: 2,
+            }}
+            alt="MITRA Logo"
+            src={Logo}
+          />
+          <Typography
+            variant="h6"
+            component="h1"
+            sx={{ color: "black", fontWeight: "bold" }}
+          >
+            MITRA Learning App
+          </Typography>
+          {/* <Box component="img" src={Logo} /> */}
+        </Toolbar>
+      </AppBar>
+      <Typography sx={{ m: 2, color: "white" }} align="center" variant="h5">
+        Hone you technical skills and ace in your career!
+      </Typography>
+      <Button
+        color="primary"
+        sx={{ m: 2 }}
+        variant="contained"
+        component={Link}
+        to="/courses"
+      >
+        Start Learning Now!
+      </Button>
+    </Box>
+  );
 };
 
-export default Home;
+export default Welcome;

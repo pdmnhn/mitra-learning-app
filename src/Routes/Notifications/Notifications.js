@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-const Notifications = () => {
+const Notifications = ({ setSelectedTab }) => {
+  useEffect(() => {
+    setSelectedTab("Notifications");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Box
       sx={{

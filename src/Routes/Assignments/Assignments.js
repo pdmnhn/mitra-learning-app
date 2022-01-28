@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-const Assignments = () => {
+
+const Assignments = ({ setSelectedTab }) => {
+  useEffect(() => {
+    setSelectedTab("Assignments");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Box
       sx={{

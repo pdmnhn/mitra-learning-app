@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Data from "../../../dummyData/courses";
 import NotExist from "../../NotExist/NotExist";
 
@@ -7,12 +7,22 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-const Course = ({ id }) => {
-  const course = Data.filter((item) => id === item.id);
-  const [value, setValue] = useState(0);
+const Course = ({ setSelectedTab }) => {
+  useEffect(() => {
+    setSelectedTab("Courses");
+  });
+  const { id } = useParams();
+  let course;
+  for (const c of Data) {
+    if (c.id === id) {
+      course = c;
+      break;
+    }
+  }
+  const [tab, setTab] = useState(0);
 
   if (!course) {
-    return <NotExist />;
+    return <NotExist setSelectedTab={setSelectedTab} />;
   }
 
   return (
@@ -20,9 +30,9 @@ const Course = ({ id }) => {
       <Box sx={{ width: "100%", borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           variant="fullWidth"
-          value={value}
+          value={tab}
           onChange={(event, value) => {
-            setValue(value);
+            setTab(value);
           }}
         >
           <Tab label="Videos" />

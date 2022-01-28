@@ -1,22 +1,15 @@
-import { useParams } from "react-router-dom";
-import NotExist from "../NotExist/NotExist";
+import { useEffect } from "react";
 
-import Signin from "./Signin/Signin";
 import Signup from "./Signup/Signup";
 
 const Account = ({ setSelectedTab }) => {
   document.title = "Account";
-  setSelectedTab(4);
+  useEffect(() => {
+    setSelectedTab("Account");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const { page } = useParams();
-
-  if (page === "signin") {
-    return <Signin />;
-  } else if (page === "signup" || page === "account") {
-    return <Signup />;
-  } else {
-    return <NotExist />;
-  }
+  return <Signup setSelectedTab={setSelectedTab} />;
 };
 
 export default Account;

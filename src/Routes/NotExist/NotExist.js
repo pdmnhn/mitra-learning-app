@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -12,15 +13,18 @@ const style = {
   alignItems: "center",
 };
 
-const NotExist = () => {
-  document.title = "Page not found";
+const NotExist = ({ setSelectedTab }) => {
+  useEffect(() => {
+    setSelectedTab("Page not found");
+  });
+
   return (
     <Box sx={style}>
       <Typography variant="h1" align="center">
         404
       </Typography>
       <Typography variant="h2" align="center">
-        Ouch, this page doesn't exist!
+        Oops, this page doesn't exist!
       </Typography>
       <Button variant="contained" component={Link} to="/home" sx={{ m: 2 }}>
         Go to Home
