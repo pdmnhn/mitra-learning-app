@@ -41,7 +41,6 @@ const Home = () => {
           >
             MITRA Learning App
           </Typography>
-          {/* <Box component="img" src={Logo} /> */}
         </Toolbar>
       </AppBar>
       <Typography sx={{ m: 2, color: "white" }} align="center" variant="h5">

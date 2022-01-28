@@ -27,18 +27,18 @@ const App = () => {
     >
       <Box sx={{ flexGrow: 1, overflowY: "auto" }} component="div">
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/courses">
-            <Route exact path=":id" element={<Course />} />
-            <Route exact index element={<Courses />} />
+            <Route path=":id" element={<Course />} />
+            <Route index element={<Courses />} />
           </Route>
-          <Route exact path="/assignments" element={<Assignments />} />
-          <Route exact path="/notifications" element={<Notifications />} />
+          <Route path="/assignments" element={<Assignments />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/account">
-            <Route exact path="signin" element={<SignIn />} />
-            <Route exact path="signup" element={<SignUp />} />
-            <Route exact index element={<Account />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route index element={<Account />} />
           </Route>
           <Route path="*" element={<NotExist />} />
         </Routes>

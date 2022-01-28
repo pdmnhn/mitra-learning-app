@@ -10,6 +10,7 @@ const Share = () => {
     if (navigator.share) {
       navigator.share({
         title: "MITRA Learning App",
+        text: "Start learning now and ace in your career",
         url,
       });
     } else {
