@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 
@@ -15,25 +14,8 @@ import NotExist from "./Routes/NotExist/NotExist";
 
 import BottomNavigation from "./common/BottomNavigation";
 import ShareButton from "./common/ShareButton";
-const IN_PROGRESS = "in_progress";
 
 const App = () => {
-  const [selectedTab, setSelectedTab] = useState(IN_PROGRESS);
-  const [changeInBottomTab, setChangeInBottomTab] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (selectedTab !== IN_PROGRESS) {
-      document.title = selectedTab;
-      navigate("/" + selectedTab.toLowerCase());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changeInBottomTab]);
-
-  useEffect(() => {
-    document.title = selectedTab;
-  }, [selectedTab]);
-
   return (
     <Box
       sx={{
@@ -42,70 +24,29 @@ const App = () => {
         width: "100%",
       }}
     >
-      <Box sx={{ flexGrow: 1 }} component="div">
+      <Box
+        sx={{ marginBottom: "56px", flexGrow: 1, overflowY: "auto" }}
+        component="div"
+      >
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={<Home setSelectedTab={setSelectedTab} />}
-          />
-          <Route
-            exact
-            path="/home"
-            element={<Home setSelectedTab={setSelectedTab} />}
-          />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/home" element={<Home />} />
           <Route path="/courses">
-            <Route
-              exact
-              path=":id"
-              element={<Course setSelectedTab={setSelectedTab} />}
-            />
-            <Route
-              exact
-              index
-              element={<Courses setSelectedTab={setSelectedTab} />}
-            />
+            <Route exact path=":id" element={<Course />} />
+            <Route exact index element={<Courses />} />
           </Route>
-          <Route
-            exact
-            path="/assignments"
-            element={<Assignments setSelectedTab={setSelectedTab} />}
-          />
-          <Route
-            exact
-            path="/notifications"
-            element={<Notifications setSelectedTab={setSelectedTab} />}
-          />
+          <Route exact path="/assignments" element={<Assignments />} />
+          <Route exact path="/notifications" element={<Notifications />} />
           <Route path="/account">
-            <Route
-              exact
-              path="signin"
-              element={<Signin setSelectedTab={setSelectedTab} />}
-            />
-            <Route
-              exact
-              path="signup"
-              element={<Signup setSelectedTab={setSelectedTab} />}
-            />
-            <Route
-              exact
-              index
-              element={<Account setSelectedTab={setSelectedTab} />}
-            />
+            <Route exact path="signin" element={<Signin />} />
+            <Route exact path="signup" element={<Signup />} />
+            <Route exact index element={<Account />} />
           </Route>
-          <Route
-            path="*"
-            element={<NotExist setSelectedTab={setSelectedTab} />}
-          />
+          <Route path="*" element={<NotExist />} />
         </Routes>
       </Box>
       <ShareButton />
-      <BottomNavigation
-        selectedTab={selectedTab}
-        setSelectedTab={setSelectedTab}
-        changeInBottomTab={changeInBottomTab}
-        setChangeInBottomTab={setChangeInBottomTab}
-      />
+      <BottomNavigation />
     </Box>
   );
 };

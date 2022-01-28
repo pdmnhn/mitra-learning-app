@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,12 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import BackgroundImage from "../../assets/background_image.png";
 import Logo from "../../assets/logo.png";
 
-const Welcome = ({ setSelectedTab }) => {
-  useEffect(() => {
-    setSelectedTab("Home");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+const Home = () => {
   return (
     <Box
       sx={{
@@ -66,4 +60,4 @@ const Welcome = ({ setSelectedTab }) => {
   );
 };
 
-export default Welcome;
+export default Home;

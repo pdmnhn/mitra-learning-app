@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Data from "../../../dummyData/courses";
 import NotExist from "../../NotExist/NotExist";
@@ -7,10 +7,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-const Course = ({ setSelectedTab }) => {
-  useEffect(() => {
-    setSelectedTab("Courses");
-  });
+const Course = () => {
   const { id } = useParams();
   let course;
   for (const c of Data) {
@@ -22,7 +19,7 @@ const Course = ({ setSelectedTab }) => {
   const [tab, setTab] = useState(0);
 
   if (!course) {
-    return <NotExist setSelectedTab={setSelectedTab} />;
+    return <NotExist />;
   }
 
   return (

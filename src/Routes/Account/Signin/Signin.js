@@ -1,60 +1,95 @@
-import GoogleLoginButton from "react-google-button";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import { useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
-const boxChildStyle = { m: 2 };
+const Signin = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+  };
 
-const Signin = ({ setSelectedTab }) => {
-  useEffect(() => {
-    setSelectedTab("Account");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <GoogleLoginButton style={{ margin: 2 }} />
-      <Button
-        sx={boxChildStyle}
-        component={RouterLink}
-        to="/account/signup"
-        color="secondary"
-        variant="contained"
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginY: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        Don't have an account yet?
-      </Button>
-      <TextField
-        sx={boxChildStyle}
-        label="Email"
-        variant="outlined"
-        type="email"
-        required
-      />
-      <TextField
-        sx={boxChildStyle}
-        label="Password"
-        variant="outlined"
-        type="password"
-        required
-      />
-      <Link component={RouterLink} to="/account/forgot-password">
-        Forgot password?
-      </Link>
-      <Button sx={boxChildStyle} variant="contained">
-        Sign in
-      </Button>
-    </Box>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link
+                to="/account/forgot-password"
+                component={RouterLink}
+                variant="body2"
+              >
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to="/account/signup" component={RouterLink} variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

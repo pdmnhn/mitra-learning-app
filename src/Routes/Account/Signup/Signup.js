@@ -1,63 +1,97 @@
-import GoogleLoginButton from "react-google-button";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import { Link as RouterLink } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
-const boxChildStyle = { m: 2 };
+const Signin = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      reg_no: data.get("reg_no"),
+      name: data.get("name"),
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+  };
 
-const Signup = ({ setSelectedTab }) => {
-  useEffect(() => {
-    setSelectedTab("Account");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <GoogleLoginButton />
-      <Button
-        sx={boxChildStyle}
-        component={Link}
-        to="/account/signin"
-        color="secondary"
-        variant="contained"
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginY: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        Already have an account?
-      </Button>
-      <TextField
-        sx={boxChildStyle}
-        label="Name"
-        variant="outlined"
-        type="text"
-        required
-      />
-      <TextField
-        sx={boxChildStyle}
-        label="Email"
-        variant="outlined"
-        type="email"
-        required
-      />
-      <TextField
-        sx={boxChildStyle}
-        label="Password"
-        variant="outlined"
-        type="password"
-        required
-      />
-
-      <Button variant="contained">Sign up</Button>
-    </Box>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign Up
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="reg_no"
+            label="Register Number"
+            name="reg_no"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button>
+          <Link to="/account/signin" component={RouterLink} variant="body2">
+            {"Already have an account? Sign In"}
+          </Link>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
-export default Signup;
+export default Signin;
