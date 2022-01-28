@@ -8,7 +8,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-const Signin = () => {
+const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -86,7 +86,7 @@ const Signin = () => {
             Sign Up
           </Button>
           <Link to="/account/signin" component={RouterLink} variant="body2">
-            {"Already have an account? Sign In"}
+            Already have an account? Sign In
           </Link>
         </Box>
       </Box>
@@ -94,4 +94,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignUp;

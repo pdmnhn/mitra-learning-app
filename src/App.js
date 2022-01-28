@@ -8,8 +8,8 @@ import Course from "./Routes/Courses/Course";
 import Assignments from "./Routes/Assignments";
 import Notifications from "./Routes/Notifications";
 import Account from "./Routes/Account";
-import Signin from "./Routes/Account/Signin";
-import Signup from "./Routes/Account/Signup";
+import SignIn from "./Routes/Account/SignIn";
+import SignUp from "./Routes/Account/SignUp";
 import NotExist from "./Routes/NotExist";
 
 import BottomNavigation from "./common/BottomNavigation";
@@ -36,8 +36,8 @@ const App = () => {
           <Route exact path="/assignments" element={<Assignments />} />
           <Route exact path="/notifications" element={<Notifications />} />
           <Route path="/account">
-            <Route exact path="signin" element={<Signin />} />
-            <Route exact path="signup" element={<Signup />} />
+            <Route exact path="signin" element={<SignIn />} />
+            <Route exact path="signup" element={<SignUp />} />
             <Route exact index element={<Account />} />
           </Route>
           <Route path="*" element={<NotExist />} />
