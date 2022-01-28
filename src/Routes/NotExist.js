@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -13,11 +12,7 @@ const style = {
   alignItems: "center",
 };
 
-const NotExist = ({ setSelectedTab }) => {
-  useEffect(() => {
-    setSelectedTab("Page not found");
-  });
-
+const NotExist = () => {
   return (
     <Box sx={style}>
       <Typography variant="h1" align="center">
