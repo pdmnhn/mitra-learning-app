@@ -24,7 +24,7 @@ const Home = () => {
       }}
     >
       <AppBar position="fixed">
-        <Toolbar sx={{ backgroundColor: "#F7F7F7" }}>
+        <Toolbar sx={{ backgroundColor: "#FEFEFE" }}>
           <Box
             component="img"
             sx={{
