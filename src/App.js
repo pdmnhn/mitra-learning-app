@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-
 import Box from "@mui/material/Box";
 
 import Home from "./Routes/Home";
