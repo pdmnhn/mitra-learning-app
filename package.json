@@ -32,7 +32,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "firebase deploy --project mitra-learning",
+    "deploy-production": "firebase deploy --project mitra-learning",
+    "deploy-preview":"firebase hosting:channel:deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
