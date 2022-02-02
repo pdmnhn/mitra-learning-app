@@ -21,10 +21,10 @@ const Account = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100%",
+        minHeight: "100%",
       }}
     >
-      <Card variant="outlined">
+      <Card variant="outlined" sx={{ marginY: 2 }}>
         <Table>
           <TableHead>
             <TableRow>

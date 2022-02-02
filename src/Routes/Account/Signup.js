@@ -23,10 +23,20 @@ const SignUp = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="main"
+      maxWidth="xs"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100%",
+      }}
+    >
       <Box
         sx={{
-          marginY: 4,
+          marginY: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
