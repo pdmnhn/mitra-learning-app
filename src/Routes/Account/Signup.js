@@ -56,7 +56,6 @@ const SignUp = () => {
             id="registerNumber"
             label="Register Number"
             name="registerNumber"
-            autoFocus
           />
           <TextField
             margin="normal"

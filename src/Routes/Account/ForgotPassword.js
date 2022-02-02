@@ -53,7 +53,6 @@ const ForgotPassword = () => {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
           />
           <Button
             type="submit"
