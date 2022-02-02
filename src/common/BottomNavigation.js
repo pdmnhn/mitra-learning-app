@@ -5,7 +5,6 @@ import BottomNav from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import CoursesIcon from "@mui/icons-material/LocalLibrary";
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountIcon from "@mui/icons-material/AccountCircle";
 
@@ -46,13 +45,6 @@ const BottomNavigation = () => {
           label="Courses"
           value="courses"
           icon={<CoursesIcon />}
-        />
-        <BottomNavigationAction
-          component={Link}
-          to="/assignments"
-          label="Assignments"
-          value="assignments"
-          icon={<AssignmentIcon />}
         />
         <BottomNavigationAction
           component={Link}

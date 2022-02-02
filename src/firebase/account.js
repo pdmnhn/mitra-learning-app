@@ -1,32 +1,15 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getPerformance } from "firebase/performance";
-
+import "./app";
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
-  signOut,
+  signOut as firebaseSignOut,
 } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD4YH9Fc6ZOPuBjrjgeVAlavwwVnEH3cCc",
-  authDomain: "mitra-learning.firebaseapp.com",
-  projectId: "mitra-learning",
-  storageBucket: "mitra-learning.appspot.com",
-  messagingSenderId: "204199760096",
-  appId: "1:204199760096:web:407a3924f193118e024085",
-  measurementId: "G-248JVPL736",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const analytics = getAnalytics(app);
-const performance = getPerformance(app);
+const auth = getAuth();
+const db = getFirestore();
 
 const handleError = (errorCode) => {
   switch (errorCode) {
@@ -56,7 +39,7 @@ const handleError = (errorCode) => {
   }
 };
 
-const signIn = async (email, password) => {
+export const signIn = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     return true;
@@ -66,9 +49,18 @@ const signIn = async (email, password) => {
   }
 };
 
-const signUp = async (email, password) => {
+export const signUp = async (email, password, registerNumber, name) => {
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    await setDoc(doc(db, "users", userCredential.user.uid), {
+      name,
+      registerNumber,
+      email,
+    });
     return true;
   } catch (err) {
     handleError(err.code);
@@ -76,7 +68,7 @@ const signUp = async (email, password) => {
   }
 };
 
-const resetPassword = async (email) => {
+export const resetPassword = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
@@ -87,8 +79,6 @@ const resetPassword = async (email) => {
   }
 };
 
-const logOut = () => {
-  signOut(auth);
+export const signOut = () => {
+  firebaseSignOut(auth);
 };
-
-export { auth, signIn, signUp, resetPassword, logOut };

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import Data from "../dummyData/courses";
+import { useContext } from "react";
+import { AppContext } from "../utils/AppContext";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
@@ -8,9 +9,11 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 
 const Courses = () => {
+  const { courses } = useContext(AppContext);
+
   return (
     <Stack spacing={2} m={2}>
-      {Data.map((item) => {
+      {courses.map((item) => {
         return (
           <Card variant="outlined" key={item.id}>
             <CardContent>

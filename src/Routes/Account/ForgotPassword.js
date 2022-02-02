@@ -3,30 +3,26 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import { signUp } from "../../firebase/account";
+import { resetPassword } from "../../firebase/account";
 
-const SignUp = () => {
+const ForgotPassword = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    await signUp(
-      data.get("email"),
-      data.get("password"),
-      data.get("registerNumber"),
-      data.get("name")
-    );
+    await resetPassword(data.get("email"));
   };
 
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginY: 4,
+          marginY: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -36,27 +32,9 @@ const SignUp = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign Up
+          Forgot password?
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="registerNumber"
-            label="Register Number"
-            name="registerNumber"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="Name"
-            name="name"
-            autoComplete="name"
-          />
           <TextField
             margin="normal"
             required
@@ -65,16 +43,7 @@ const SignUp = () => {
             label="Email Address"
             name="email"
             autoComplete="email"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            autoFocus
           />
           <Button
             type="submit"
@@ -82,15 +51,24 @@ const SignUp = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
+            Get password reset email
           </Button>
-          <Link to="/account/signin" component={RouterLink} variant="body2">
-            Already have an account? Sign In
-          </Link>
+          <Grid container>
+            <Grid item xs>
+              <Link to="/account/signin" component={RouterLink} variant="body2">
+                Sign In
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to="/account/signup" component={RouterLink} variant="body2">
+                Don't have an account? Sign Up
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
       </Box>
     </Container>
   );
 };
 
-export default SignUp;
+export default ForgotPassword;

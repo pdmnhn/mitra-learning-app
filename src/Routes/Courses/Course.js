@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../../utils/AppContext";
 import { useParams } from "react-router-dom";
-import Data from "../../dummyData/courses";
 import NotExist from "../NotExist";
 
 import Tabs from "@mui/material/Tabs";
@@ -8,9 +8,10 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 const Course = () => {
+  const { courses } = useContext(AppContext);
   const { id } = useParams();
   let course;
-  for (const c of Data) {
+  for (const c of courses) {
     if (c.id === id) {
       course = c;
       break;
