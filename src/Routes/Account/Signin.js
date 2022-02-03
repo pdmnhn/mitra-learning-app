@@ -84,7 +84,7 @@ const SignIn = () => {
             </Grid>
             <Grid item>
               <Link to="/account/signup" component={RouterLink} variant="body2">
-                Don't have an account? Sign Up
+                Don't have an account? Sign up
               </Link>
             </Grid>
           </Grid>
