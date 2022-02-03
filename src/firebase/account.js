@@ -33,6 +33,14 @@ const handleError = (errorCode) => {
       alert("The password is invalid.");
       break;
     }
+    case "auth/missing-email": {
+      alert("Missing email");
+      break;
+    }
+    case "auth/internal-error": {
+      alert("Missing details");
+      break;
+    }
     default: {
       alert(errorCode);
     }
@@ -42,15 +50,18 @@ const handleError = (errorCode) => {
 export const signIn = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    return true;
   } catch (err) {
     handleError(err.code);
-    return false;
   }
 };
 
 export const signUp = async (email, password, registerNumber, name) => {
   try {
+    if (!(email && password && registerNumber)) {
+      return alert("Missing details");
+    } else if (registerNumber.length < 10 || registerNumber.length > 11) {
+      return alert("Register number must be 10 or 11 digits");
+    }
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -61,10 +72,8 @@ export const signUp = async (email, password, registerNumber, name) => {
       registerNumber,
       email,
     });
-    return true;
   } catch (err) {
     handleError(err.code);
-    return false;
   }
 };
 
@@ -72,10 +81,8 @@ export const resetPassword = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
-    return true;
   } catch (err) {
     handleError(err.code);
-    return false;
   }
 };
 

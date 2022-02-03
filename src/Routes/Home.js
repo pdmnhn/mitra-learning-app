@@ -6,6 +6,8 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import BackgroundImage from "../assets/background_image.png";
 import Logo from "../assets/logo.png";
+import Fab from "@mui/material/Fab";
+import Info from "@mui/icons-material/InfoOutlined";
 
 const Home = () => {
   return (
@@ -53,8 +55,19 @@ const Home = () => {
         component={Link}
         to="/courses"
       >
-        Start Learning Now!
+        Start Learning Now
       </Button>
+      <Fab
+        color="primary"
+        size="medium"
+        aria-label="about"
+        component={Link}
+        to="/about"
+        // bottom nav height is 56 so above 25 units the share fab will in the ui
+        sx={{ position: "fixed", bottom: 81, left: 25, zIndex: 10000 }}
+      >
+        <Info />
+      </Fab>
     </Box>
   );
 };

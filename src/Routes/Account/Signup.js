@@ -94,7 +94,7 @@ const SignUp = () => {
             Sign Up
           </Button>
           <Link to="/account/signin" component={RouterLink} variant="body2">
-            Already have an account? Sign In
+            Already have an account? Sign in
           </Link>
         </Box>
       </Box>

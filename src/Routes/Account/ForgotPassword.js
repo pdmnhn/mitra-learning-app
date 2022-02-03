@@ -65,12 +65,12 @@ const ForgotPassword = () => {
           <Grid container>
             <Grid item xs>
               <Link to="/account/signin" component={RouterLink} variant="body2">
-                Sign In
+                Sign in
               </Link>
             </Grid>
             <Grid item>
               <Link to="/account/signup" component={RouterLink} variant="body2">
-                Don't have an account? Sign Up
+                Don't have an account? Sign up
               </Link>
             </Grid>
           </Grid>
