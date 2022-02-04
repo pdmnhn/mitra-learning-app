@@ -1,11 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 
-import { AppContext } from "./utils/AppContext";
+import { AppContext } from "./StateManagement/AppContext";
 import { useContext } from "react";
 
 import Home from "./Routes/Home";
-import About from "./Routes/About";
 import Courses from "./Routes/Courses";
 import Course from "./Routes/Courses/Course";
 import Notifications from "./Routes/Notifications";
@@ -67,7 +66,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/courses">
             <Route path=":id" element={<Course />} />
             <Route index element={<Courses />} />

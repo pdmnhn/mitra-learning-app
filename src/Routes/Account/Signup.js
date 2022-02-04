@@ -8,7 +8,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import { signUp } from "../../firebase/account";
+import { signUp } from "../../firebase/authentication";
 
 const SignUp = () => {
   const handleSubmit = async (event) => {

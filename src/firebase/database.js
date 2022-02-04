@@ -29,8 +29,7 @@ export const getAllDocumentsFromACollection = async (
   const docs = await getDocs(q);
   const documentsArray = [];
   docs.forEach((doc) => {
-    const { title, description } = doc.data();
-    documentsArray.push({ id: doc.id, title, description });
+    documentsArray.push({ id: doc.id, ...doc.data() });
   });
   return documentsArray;
 };
