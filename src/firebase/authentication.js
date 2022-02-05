@@ -48,6 +48,9 @@ const handleError = (errorCode) => {
 };
 
 export const signIn = async (email, password) => {
+  if (!(email && password)) {
+    return alert("Missing details");
+  }
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
@@ -56,12 +59,12 @@ export const signIn = async (email, password) => {
 };
 
 export const signUp = async (email, password, registerNumber, name) => {
+  if (!(email && password && registerNumber)) {
+    return alert("Missing details");
+  } else if (registerNumber.length < 10 || registerNumber.length > 11) {
+    return alert("Register number must be 10 or 11 digits");
+  }
   try {
-    if (!(email && password && registerNumber)) {
-      return alert("Missing details");
-    } else if (registerNumber.length < 10 || registerNumber.length > 11) {
-      return alert("Register number must be 10 or 11 digits");
-    }
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -78,6 +81,9 @@ export const signUp = async (email, password, registerNumber, name) => {
 };
 
 export const resetPassword = async (email) => {
+  if (!email) {
+    return alert("Missing email");
+  }
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
