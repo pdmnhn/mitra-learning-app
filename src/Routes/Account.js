@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AppContext } from "../utils/AppContext";
-import { signOut } from "../firebase/account";
+import { AppContext } from "../StateManagement/AppContext";
+import { signOut } from "../firebase/authentication";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import Table from "@mui/material/Table";
