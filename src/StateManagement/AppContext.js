@@ -19,20 +19,9 @@ export const ContextProvider = ({ children }) => {
     if (authUser) {
       const userFromFirestore = await getDocument("users", authUser.uid);
       setUser(userFromFirestore);
-      setLoading(true);
-      const courseModulesFromDB = {};
-      for (const { id } of courses) {
-        courseModulesFromDB[id] = await getAllDocumentsFromACollection(
-          `courses/${id}/modules`,
-          "date",
-          "asc"
-        );
-      }
-      setCourseModules(courseModulesFromDB);
-      setLoading(false);
+      // TODO fetch the course modules saved as course modules in every document(course) saved in courses collection
     } else {
       setUser(null);
-      setCourseModules({});
     }
   });
 
