@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../StateManagement/AppContext";
-import { signOut } from "../firebase/authentication";
+import { AppContext } from "../../State";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import Table from "@mui/material/Table";
@@ -10,9 +9,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { signOut } from "../../utils/firebase/auth";
+import { UserType } from "../../utils/types";
 
 const Account = () => {
-  const { name, registerNumber, email } = useContext(AppContext).user;
+  const { name, registerNumber, email } = useContext(AppContext)
+    .user as UserType;
   return (
     <Container
       component="main"

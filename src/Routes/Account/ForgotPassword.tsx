@@ -1,3 +1,4 @@
+import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -8,14 +9,13 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
-import { resetPassword } from "../../firebase/authentication";
+import { resetPassword } from "../../utils/firebase/auth";
 
 const ForgotPassword = () => {
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    await resetPassword(data.get("email"));
+    await resetPassword(data.get("email") as string);
   };
 
   return (

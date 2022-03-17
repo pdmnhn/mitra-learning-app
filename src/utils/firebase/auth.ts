@@ -1,4 +1,4 @@
-import "./app";
+import ".";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -6,12 +6,13 @@ import {
   sendPasswordResetEmail,
   signOut as firebaseSignOut,
 } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const auth = getAuth();
 const db = getFirestore();
 
-const handleError = (errorCode) => {
+const handleError = (errorCode: string) => {
   switch (errorCode) {
     case "auth/email-already-in-use": {
       alert("The email address is already in use by another account.");
@@ -47,18 +48,25 @@ const handleError = (errorCode) => {
   }
 };
 
-export const signIn = async (email, password) => {
+export const signIn = async (email: string, password: string) => {
   if (!(email && password)) {
     return alert("Missing details");
   }
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    handleError(err.code);
+    if (err instanceof FirebaseError) {
+      handleError(err.code);
+    }
   }
 };
 
-export const signUp = async (email, password, registerNumber, name) => {
+export const signUp = async (
+  email: string,
+  password: string,
+  registerNumber: string,
+  name: string
+) => {
   if (!(email && password && registerNumber)) {
     return alert("Missing details");
   } else if (registerNumber.length < 10 || registerNumber.length > 11) {
@@ -76,11 +84,13 @@ export const signUp = async (email, password, registerNumber, name) => {
       email,
     });
   } catch (err) {
-    handleError(err.code);
+    if (err instanceof FirebaseError) {
+      handleError(err.code);
+    }
   }
 };
 
-export const resetPassword = async (email) => {
+export const resetPassword = async (email: string) => {
   if (!email) {
     return alert("Missing email");
   }
@@ -88,7 +98,9 @@ export const resetPassword = async (email) => {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
   } catch (err) {
-    handleError(err.code);
+    if (err instanceof FirebaseError) {
+      handleError(err.code);
+    }
   }
 };
 

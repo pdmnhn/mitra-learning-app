@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Share = () => {
   const [open, setOpen] = useState(false);
-  const share = (event) => {
+  const share = () => {
     const url = window.location.href;
     if (navigator.share) {
       navigator.share({
@@ -19,7 +19,7 @@ const Share = () => {
     }
   };
 
-  const handleClose = (event, reason) => {
+  const handleClose = () => {
     setOpen(false);
   };
 

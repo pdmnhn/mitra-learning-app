@@ -1,33 +1,34 @@
-import "./app";
+import ".";
 import {
   query,
   getFirestore,
   collection,
   orderBy,
-  getDocs,
+  getDocs as firebaseGetDocs,
   doc,
-  getDoc,
+  getDoc as firebaseGetDoc,
+  OrderByDirection,
 } from "firebase/firestore";
 
 const db = getFirestore();
 
-export const getDocument = async (collection, id) => {
+export const getDoc = async (collection: string, id: string) => {
   const docRef = doc(db, collection, id);
-  const docSnap = await getDoc(docRef);
+  const docSnap = await firebaseGetDoc(docRef);
   return docSnap.exists() ? docSnap.data() : null;
 };
 
-export const getAllDocumentsFromACollection = async (
-  collectionName,
-  fieldToOrderBy,
-  order
+export const getDocs = async (
+  collectionName: string,
+  fieldToOrderBy: string,
+  order: OrderByDirection
 ) => {
   const q = query(
     collection(db, collectionName),
     orderBy(fieldToOrderBy, order)
   );
-  const docs = await getDocs(q);
-  const documentsArray = [];
+  const docs = await firebaseGetDocs(q);
+  const documentsArray: any = [];
   docs.forEach((doc) => {
     documentsArray.push({ id: doc.id, ...doc.data() });
   });

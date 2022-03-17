@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 
-import { AppContext } from "./StateManagement/AppContext";
+import { AppContext } from "./State";
 import { useContext } from "react";
 
 import Home from "./Routes/Home";
@@ -67,7 +67,10 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/courses">
-            <Route path=":id" element={<Course />} />
+            <Route
+              path=":id"
+              element={user ? <Course /> : <Navigate replace to="/account" />}
+            />
             <Route index element={<Courses />} />
           </Route>
           <Route path="/notifications" element={<Notifications />} />
