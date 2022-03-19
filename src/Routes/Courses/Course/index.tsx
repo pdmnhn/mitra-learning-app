@@ -41,7 +41,7 @@ const Course = () => {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="h1" sx={{ fontWeight: "bold" }}>
-            {`Modules in ${course.title} course`}
+            {course.title}
           </Typography>
         </Toolbar>
       </AppBar>
