@@ -1,20 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ContextProvider } from "./State";
-import App from "./App";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Provider } from "react-redux";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import App from "./App";
+import store from "./store";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <CssBaseline />
-      <ContextProvider>
+      <Provider store={store}>
         <App />
-      </ContextProvider>
+      </Provider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

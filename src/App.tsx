@@ -1,24 +1,35 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-
-import { AppContext } from "./State";
-import { useContext } from "react";
-
+import { useEffect } from "react";
 import Home from "./Routes/Home";
 import Courses from "./Routes/Courses";
 import Course from "./Routes/Courses/Course";
+import Module from "./Routes/Courses/Course/Module";
 import Notifications from "./Routes/Notifications";
 import Account from "./Routes/Account";
 import SignIn from "./Routes/Account/SignIn";
 import SignUp from "./Routes/Account/SignUp";
 import ForgotPassword from "./Routes/Account/ForgotPassword";
-import NotExist from "./Routes/NotExist";
-
-import BottomNavigation from "./common/BottomNavigation";
-import ShareButton from "./common/ShareButton";
+import NotExist from "./components/NotExist";
+import BottomNavigation from "./components/BottomNavigation";
+import ShareButton from "./components/ShareButton";
+import { useAppSelector, useAppDispatch } from "./hooks";
+import { initUser } from "./store/reducers/user";
+import { initCourses } from "./store/reducers/courses";
+import Loading from "./components/Loading";
 
 const App = () => {
-  const { user } = useContext(AppContext);
+  const user = useAppSelector((state) => state.user.user);
+  const loading = useAppSelector(
+    (state) =>
+      state.user.status === "loading" || state.courses.status === "loading"
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(initUser());
+    dispatch(initCourses());
+  }, [dispatch]);
 
   const redirect = () => {
     if (user) {
@@ -63,20 +74,33 @@ const App = () => {
         }}
         component="div"
       >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/courses">
-            <Route
-              path=":id"
-              element={user ? <Course /> : <Navigate replace to="/account" />}
-            />
-            <Route index element={<Courses />} />
-          </Route>
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/account">{redirect()}</Route>
-          <Route path="*" element={<NotExist />} />
-        </Routes>
+        {loading && (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="*" element={<Loading />} />
+          </Routes>
+        )}
+        {!loading && (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/courses">
+              <Route
+                path=":courseId/:moduleId"
+                element={user ? <Module /> : <Navigate replace to="/account" />}
+              />
+              <Route
+                path=":courseId"
+                element={user ? <Course /> : <Navigate replace to="/account" />}
+              />
+              <Route index element={<Courses />} />
+            </Route>
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/account">{redirect()}</Route>
+            <Route path="*" element={<NotExist />} />
+          </Routes>
+        )}
       </Box>
       <ShareButton />
       <BottomNavigation />

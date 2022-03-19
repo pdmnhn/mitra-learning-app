@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { AppContext } from "../../State";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import Table from "@mui/material/Table";
@@ -9,12 +7,22 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { Navigate } from "react-router-dom";
 import { signOut } from "../../utils/firebase/auth";
-import { UserType } from "../../utils/types";
+import { useAppSelector } from "../../hooks";
 
 const Account = () => {
-  const { name, registerNumber, email } = useContext(AppContext)
-    .user as UserType;
+  const user = useAppSelector((state) => state.user.user);
+  const status = useAppSelector((state) => state.user.status);
+
+  if (status === "loading") {
+    return <div>loading...</div>;
+  }
+
+  if (user === null) {
+    return <Navigate replace to="/account/signup" />;
+  }
+
   return (
     <Container
       component="main"
@@ -38,15 +46,15 @@ const Account = () => {
           <TableBody>
             <TableRow>
               <TableCell align="left">Name</TableCell>
-              <TableCell align="left">{name}</TableCell>
+              <TableCell align="left">{user.name}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell align="left">Register Number</TableCell>
-              <TableCell align="left">{registerNumber}</TableCell>
+              <TableCell align="left">{user.registerNumber}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell align="left">Email</TableCell>
-              <TableCell align="left">{email}</TableCell>
+              <TableCell align="left">{user.email}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

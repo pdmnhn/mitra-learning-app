@@ -8,6 +8,7 @@ import {
   doc,
   getDoc as firebaseGetDoc,
   OrderByDirection,
+  Timestamp,
 } from "firebase/firestore";
 
 const db = getFirestore();
@@ -32,5 +33,9 @@ export const getDocs = async (
   docs.forEach((doc) => {
     documentsArray.push({ id: doc.id, ...doc.data() });
   });
+  for (const doc of documentsArray) {
+    const date = doc.date as Timestamp;
+    doc.date = date.toDate().toISOString();
+  }
   return documentsArray;
 };

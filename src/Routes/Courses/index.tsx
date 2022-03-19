@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AppContext } from "../../State";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import { useAppSelector } from "../../hooks";
+import Loading from "../../components/Loading";
 
 const Courses = () => {
-  const { courses } = useContext(AppContext);
+  const courses = useAppSelector((state) => state.courses.courses);
+  const status = useAppSelector((state) => state.courses.status);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
 
   return (
     <Stack spacing={2} m={2}>
