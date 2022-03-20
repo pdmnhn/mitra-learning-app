@@ -11,4 +11,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+export const vapidKey =
+  "BMe8hoNPFM1MWPIPYJno2Mmil3PXe5aagpZw4eh4uzb1PoL1yL24a9Fi172gzizCpX1chmx53GLgNF5a4qPwSTY"; // notification key
+
 export default app;

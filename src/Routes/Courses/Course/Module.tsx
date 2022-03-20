@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import NotExist from "../../../components/NotExist";
-import { useAppSelector, useAppDispatch } from "../../../hooks";
+import { useAppSelector, useAppDispatch } from "../../../utils/hooks";
 import { initCourseModules } from "../../../store/reducers/modules";
 import { getFileURL } from "../../../utils/firebase/storage";
 import Button from "@mui/material/Button";
@@ -32,7 +32,8 @@ const Module = () => {
     if (!module) {
       dispatch(initCourseModules(courseId));
     }
-  }, [courseId, dispatch, module]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (module) {

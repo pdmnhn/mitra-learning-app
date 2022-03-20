@@ -7,10 +7,9 @@ import {
   signOut as firebaseSignOut,
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { createDoc } from "./database";
 
 const auth = getAuth();
-const db = getFirestore();
 
 const handleError = (errorCode: string) => {
   switch (errorCode) {
@@ -78,7 +77,7 @@ export const signUp = async (
       email,
       password
     );
-    await setDoc(doc(db, "users", userCredential.user.uid), {
+    createDoc("users", userCredential.user.uid, {
       name,
       registerNumber,
       email,

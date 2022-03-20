@@ -13,10 +13,13 @@ import ForgotPassword from "./Routes/Account/ForgotPassword";
 import NotExist from "./components/NotExist";
 import BottomNavigation from "./components/BottomNavigation";
 import ShareButton from "./components/ShareButton";
-import { useAppSelector, useAppDispatch } from "./hooks";
+import { useAppSelector, useAppDispatch } from "./utils/hooks";
 import { initUser } from "./store/reducers/user";
 import { initCourses } from "./store/reducers/courses";
 import Loading from "./components/Loading";
+import useNotification from "./utils/hooks/useNotification";
+import NotificationDialog from "./components/NotificationDialog";
+import { initNotifications } from "./store/reducers/notifications";
 
 const App = () => {
   const user = useAppSelector((state) => state.user.user);
@@ -25,11 +28,15 @@ const App = () => {
       state.user.status === "loading" || state.courses.status === "loading"
   );
   const dispatch = useAppDispatch();
+  const { notification, closeNotification, notificationOpen } =
+    useNotification();
 
   useEffect(() => {
     dispatch(initUser());
     dispatch(initCourses());
-  }, [dispatch]);
+    dispatch(initNotifications());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const redirect = () => {
     if (user) {
@@ -74,6 +81,13 @@ const App = () => {
         }}
         component="div"
       >
+        {notification && (
+          <NotificationDialog
+            open={notificationOpen}
+            handleClose={closeNotification}
+            notification={notification}
+          />
+        )}
         {loading && (
           <Routes>
             <Route path="/" element={<Home />} />

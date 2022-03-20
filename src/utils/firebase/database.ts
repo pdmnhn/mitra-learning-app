@@ -9,6 +9,7 @@ import {
   getDoc as firebaseGetDoc,
   OrderByDirection,
   Timestamp,
+  setDoc,
 } from "firebase/firestore";
 
 const db = getFirestore();
@@ -38,4 +39,8 @@ export const getDocs = async (
     doc.date = date.toDate().toISOString();
   }
   return documentsArray;
+};
+
+export const createDoc = async (collection: string, id: string, data: {}) => {
+  await setDoc(doc(db, collection, id), data);
 };

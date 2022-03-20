@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import { signOut } from "../../utils/firebase/auth";
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from "../../utils/hooks";
 
 const Account = () => {
   const user = useAppSelector((state) => state.user.user);

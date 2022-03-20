@@ -1,6 +1,7 @@
 import userReducer from "./reducers/user";
 import coursesReducer from "./reducers/courses";
 import modulesReducer from "./reducers/modules";
+import notificationsReducer from "./reducers/notifications";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
@@ -8,6 +9,7 @@ const store = configureStore({
     user: userReducer,
     courses: coursesReducer,
     modules: modulesReducer,
+    notifications: notificationsReducer,
   },
 });
 

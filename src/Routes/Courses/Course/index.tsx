@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import Loading from "../../../components/Loading";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../utils/hooks";
 import NotExist from "../../../components/NotExist";
 import { useEffect } from "react";
 import { initCourseModules } from "../../../store/reducers/modules";
@@ -26,7 +26,8 @@ const Course = () => {
     if (!modules) {
       dispatch(initCourseModules(id));
     }
-  }, [dispatch, id, modules]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (status === undefined || status === "loading") {
     return <Loading />;
@@ -48,6 +49,7 @@ const Course = () => {
       <Stack spacing={2} m={2} sx={{ pt: "50px", my: 4 }}>
         {modules.map((m, index) => (
           <Card
+            variant="outlined"
             key={m.id}
             sx={{ backgroundColor: "secondary.main", color: "white" }}
           >
