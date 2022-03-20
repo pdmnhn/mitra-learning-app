@@ -1,4 +1,4 @@
-import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -10,7 +10,7 @@ const Notifications = () => {
   );
 
   return (
-    <Paper square>
+    <Box>
       <List>
         {notifications.map(({ id, title, description, url }) => (
           <ListItem
@@ -26,7 +26,7 @@ const Notifications = () => {
           </ListItem>
         ))}
       </List>
-    </Paper>
+    </Box>
   );
 };
 
