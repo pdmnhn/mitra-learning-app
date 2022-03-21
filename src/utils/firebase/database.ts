@@ -10,9 +10,12 @@ import {
   OrderByDirection,
   Timestamp,
   setDoc,
+  enableIndexedDbPersistence,
 } from "firebase/firestore";
 
 const db = getFirestore();
+
+enableIndexedDbPersistence(db);
 
 export const getDoc = async (collection: string, id: string) => {
   const docRef = doc(db, collection, id);

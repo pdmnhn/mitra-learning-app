@@ -13,6 +13,8 @@ const useNotification = () => {
     getToken(messaging, { vapidKey: vapidKey }).then((token) => {
       if (!token) {
         Notification.requestPermission();
+      } else {
+        console.log(token);
       }
     });
 
