@@ -72,7 +72,7 @@ const Module = () => {
         }}
       >
         <iframe
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: "90%" }}
           width="560"
           height="315"
           src={`https://www.youtube-nocookie.com/embed/${module?.videoId}`}
