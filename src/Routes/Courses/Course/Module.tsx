@@ -72,6 +72,9 @@ const Module = () => {
         }}
       >
         <iframe
+          style={{ maxWidth: "100%" }}
+          width="560"
+          height="315"
           src={`https://www.youtube-nocookie.com/embed/${module?.videoId}`}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
